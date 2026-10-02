@@ -1,3 +1,5 @@
+#Игнор папки с Data Learnings
+#Движок поиска медведей
 dl/black
 dl/grizzly
 dl/polar
