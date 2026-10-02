@@ -64,15 +64,34 @@ if __name__ == '__main__':
     if not data2:
         raise ValueError("JSON файл пусток")
 
+    def randcity2(data):
+        all_countries = list(data.keys())
+        country1 = random.choice(all_countries)
+        all_countries.remove(country1)
+        country2 = random.choice(all_countries)
+        city1 = random.choice(list(data[country1].keys()))
+        city2 = random.choice(list(data[country2].keys()))
+        return data[country1][city1], data[country2][city2]
+
+    city3, city4 = randcity2(data2)
+    print(f'city3 = {city3}, city4 ={city4}')
+
     # Модель .json cо странами
-    print(data2)
-    print(data2.keys())
-    country1, country2, *_ = data2.keys()
-    print(country1, country2)
-    print(data2[country1])
-    print(data2[country2])
-    print(data2[country1].keys(),data2[country2].keys())
+
+    # print(data2)
+    # print(data2.keys())
+    # country1, country2, *_ = data2.keys()
+    # print(country1, country2)
+    # print(data2[country1])
+    # print(data2[country2])
+    # print(data2[country1].keys(),data2[country2].keys())
+
     
     # Отображение найденных совпадений
+    print('Тестирования функции без страны')
     print(f'Города: {city1} и {city2}')
     print(haversin(data[city1],data[city2]))
+    
+    print('Тестирования функции со страной')
+    print(f'Города: {city3} и {city4}')
+    print(haversin(city3, city4))
