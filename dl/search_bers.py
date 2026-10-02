@@ -34,7 +34,7 @@ def search_images(term, max_images=30, page=1, tries=5, sleep_s=2):
 path = Path('bears')
 path.mkdir(exist_ok=True)
 
-bear_types = ('grizzly', 'black', 'teddy')
+bear_types = ('grizzly', 'black', 'teddy', 'polar')
 target_count = 120
 images_per_page = 100  # сколько запрашивать за раз
 

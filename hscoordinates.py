@@ -58,6 +58,21 @@ if __name__ == '__main__':
         return city1, city2
 
     city1, city2 = randcity(data)
+
+    with open('locations2.json', encoding='utf-8') as countries:
+        data2 = json.load(countries)
+    if not data2:
+        raise ValueError("JSON файл пусток")
+
+    # Модель .json cо странами
+    print(data2)
+    print(data2.keys())
+    country1, country2, *_ = data2.keys()
+    print(country1, country2)
+    print(data2[country1])
+    print(data2[country2])
+    print(data2[country1].keys(),data2[country2].keys())
     
     # Отображение найденных совпадений
+    print(f'Города: {city1} и {city2}')
     print(haversin(data[city1],data[city2]))
