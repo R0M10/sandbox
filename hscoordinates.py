@@ -1,4 +1,6 @@
 import math
+import json
+import random
 
 """
 Формула для расчёта расстояния между двумя точками на Земле с использованием Хаверсинуса выглядит следующим образом:
@@ -19,7 +21,7 @@ d — расстояние между двумя точками.
 """
 
 #Функция-Деаоратор вывода дистанции в км. и м.
-def hspresentation(hs):
+def hsdecor(hs):
     # Внутренная фукнция-обертка, которая принимает любые аргументы
     def wrapper(*args, **kwargs):
         value = hs(*args, **kwargs)
@@ -28,7 +30,7 @@ def hspresentation(hs):
         return f'расстояние между точками {km} км. и {m} м.'
     return wrapper
 
-@hspresentation
+@hsdecor
 def haversin(pos1, pos2):
     lat_1, lon_1 = pos1
     lat_2, lon_2 = pos2
@@ -41,11 +43,21 @@ def haversin(pos1, pos2):
 
 # Функционал самотестирования
 if __name__ == '__main__':
-    moscow = (55.751667, 37.617778)
-    spb = (59.938784, 30.314997)
-    newyork = (40.714627, -74.002863)
+    # Подключение к справочнику адресов
+    with open('locations.json', encoding='utf-8') as file:
+        data = json.load(file)
+    if not data:
+        raise ValueError("JSON файл пустой")
 
-    print(haversin(moscow,spb))
-    print(haversin(spb, moscow))
-    print(haversin(newyork,moscow))
-    print(haversin(newyork,spb))
+    # фукнция по подборы пары для тестирования
+    def randcity(data):
+        all_cities = list(data.keys())
+        city1 = random.choice(all_cities)
+        all_cities.remove(city1)
+        city2 = random.choice(all_cities)
+        return city1, city2
+
+    city1, city2 = randcity(data)
+    
+    # Отображение найденных совпадений
+    print(haversin(data[city1],data[city2]))
