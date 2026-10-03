@@ -61,3 +61,5 @@ if __name__ == '__main__':
     
     # Отображение найденных совпадений
     print(haversin(data[city1],data[city2]))
+
+# тестирование ветвления в git - ветка development
