@@ -41,6 +41,9 @@ def haversin(pos1, pos2):
     distance = math.acos(cos_lat + sin_lat * cos_lon) * R
     return round(distance,5)
 
+# тестирование ветвления в git - ветка development
+
+
 # Функционал самотестирования
 if __name__ == '__main__':
     # Подключение к справочнику адресов
@@ -62,4 +65,4 @@ if __name__ == '__main__':
     # Отображение найденных совпадений
     print(haversin(data[city1],data[city2]))
 
-# тестирование ветвления в git - ветка development
+
